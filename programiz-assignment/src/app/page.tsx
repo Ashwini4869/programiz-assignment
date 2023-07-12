@@ -38,9 +38,11 @@ export default function Home() {
     );
   });
   return (
-    <div>
+    <div className="flex flex-col justify-center">
       <Header />
-      <div>{jobCardElements}</div>
+      <div className="w-full mt-12 flex flex-col items-center">
+        {jobCardElements}
+      </div>
     </div>
   );
 }
