@@ -23,8 +23,11 @@ export default function Home() {
       })
       .catch((e: Error) => console.log(e));
   }, []);
-
-  const jobCardElements = data?.map((elem: any) => {
+  const filters = ["CSS"];
+  const filterJobs = data?.filter((elem: any) => {
+    return elem.keywords.some((item: string) => filters.includes(item));
+  });
+  const jobCardElements = filterJobs?.map((elem: any) => {
     return (
       <JobCard
         image_url={elem.company_logo}

@@ -22,17 +22,17 @@ const JobCard = (props: Props) => {
   }
   const keywordElements = props.keywords.map((element) => {
     return (
-      <div className="px-2 mx-1 text-sm bg-teal-100 font-bold text-teal-600">
+      <div className="px-2 mx-1 text-sm bg-teal-100  text-teal-600">
         {element}
       </div>
     );
   });
   return (
-    <div className="flex mx-2 my-4 w-3/4 justify-between bg-gray-50 shadow-md">
+    <div className="flex py-4 mx-2 my-4 w-3/4 justify-between bg-gray-50 shadow-md rounded-lg">
       {/* outer container */}
       <div className="flex w-full">
         <Image
-          className="rounded-[50%] p-2 ml-1"
+          className="rounded-[50%] p-2 ml-2"
           src={props.image_url}
           width={70}
           height={50}
