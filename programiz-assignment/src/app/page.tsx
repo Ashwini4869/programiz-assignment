@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import JobCard from "@/components/JobCard";
 import axios from "axios";
 
 const fetchData = async () => {
@@ -22,9 +23,24 @@ export default function Home() {
       })
       .catch((e: Error) => console.log(e));
   }, []);
+
+  const jobCardElements = data?.map((elem: any) => {
+    return (
+      <JobCard
+        image_url={elem.company_logo}
+        company={elem.company}
+        location={elem.location}
+        posted_on={elem.posted_on}
+        position={elem.position}
+        timing={elem.timing}
+        keywords={elem.keywords}
+      />
+    );
+  });
   return (
     <div>
       <Header />
+      <div>{jobCardElements}</div>
     </div>
   );
 }
