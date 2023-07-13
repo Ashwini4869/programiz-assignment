@@ -32,7 +32,7 @@ export default function Home() {
     if (filters.length == 0) {
       return elem;
     }
-    return elem.keywords.some((item: string) => filters.includes(item));
+    return filters.every((element) => elem.keywords.includes(element));
   });
   const jobCardElements = filterJobs?.map((elem: any) => {
     return (
@@ -50,9 +50,9 @@ export default function Home() {
     );
   });
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center items-center">
       <Header />
-      <Filterbar filters={filters} changeFilters={changeFilters} />
+      <Filterbar filters={filters} setFilters={setFilters} />
       <div className="w-full mt-12 flex flex-col items-center">
         {jobCardElements}
       </div>
