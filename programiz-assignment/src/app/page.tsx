@@ -54,7 +54,12 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center">
       <Header />
-      <Filterbar filters={filters} setFilters={setFilters} />
+      {/* conditionally render the filterbar component */}
+      {filters.length !== 0 ? (
+        <Filterbar filters={filters} setFilters={setFilters} />
+      ) : (
+        ""
+      )}
       <div className="w-full mt-12 flex flex-col items-center">
         {jobCardElements}
       </div>

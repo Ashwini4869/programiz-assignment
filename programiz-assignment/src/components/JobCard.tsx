@@ -1,7 +1,7 @@
-"use client";
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
+import { split } from "postcss/lib/list";
 
 interface Props {
   image_url: string;
@@ -29,6 +29,16 @@ const JobCard = (props: Props) => {
     return time;
   }
 
+  const displayNew = () => {
+    let time_string = relativeTime(props.posted_on);
+    const split_array = time_string.split(" ");
+    if (Number(split_array[0]) < 25) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const keywordElements = props.keywords.map((element) => {
     return (
       <div
@@ -52,12 +62,22 @@ const JobCard = (props: Props) => {
         />
         {/* main section of the card */}
         <div className="p-2 w-full">
-          <h1 className="text-sm font-semibold text-teal-600">
-            {props.company}
-          </h1>
+          <div className="flex items-center">
+            <h1 className="text-sm font-semibold text-teal-600">
+              {props.company}
+            </h1>
+            {/* new badge ,conditionally render for jobs that are within 25 days (just to demonstrate)*/}
+            {displayNew() ? (
+              <div className="text-xs bg-teal-600 p-1 px-2 font-semibold text-gray-50 rounded-xl ml-2">
+                NEW!
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           {/* title and keywords section */}
           <div className="flex justify-between">
-            <h1 className="text-[15px] font-bold text-slate-700 tracking-wide">
+            <h1 className="text-[15px] font-bold text-slate-700 tracking-wide hover:text-teal-500 hover:cursor-pointer">
               {props.position}
             </h1>
             <div className="flex justify-between">{keywordElements}</div>

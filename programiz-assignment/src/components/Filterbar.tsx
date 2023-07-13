@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { HiXMark } from "react-icons/hi2";
 
@@ -16,7 +15,7 @@ const handleRemoveFilter = (props: Props, filter: string) => {
 const Filterbar = (props: Props) => {
   const filterElements = props.filters.map((element) => {
     return (
-      <div className="flex px-1 items-center m-2 bg-teal-100 text-teal-600">
+      <div className="flex px-1 rounded-md items-center m-2 bg-teal-100 text-teal-600">
         <div className="">{element}</div>
         <div
           onClick={() => handleRemoveFilter(props, element)}
@@ -32,7 +31,7 @@ const Filterbar = (props: Props) => {
       <div className="flex">{filterElements}</div>
       <button
         onClick={() => handleClick(props)}
-        className="text-teal-600 font-semibold mr-2 hover:underline"
+        className="text-teal-600 font-semibold mr-4 hover:underline"
       >
         Clear
       </button>
