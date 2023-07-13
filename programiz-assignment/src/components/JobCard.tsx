@@ -50,9 +50,15 @@ const JobCard = (props: Props) => {
     );
   });
   return (
-    <div className="flex py-4 mx-2 my-4 w-3/4 justify-between bg-gray-50 shadow-md rounded-lg">
+    <div className="flex mx-2 my-4 w-3/4 justify-between bg-gray-50 shadow-md rounded-lg">
+      {/* left side highlight for featured */}
+      {props.featured ? (
+        <div className="w-1 rounded-l-md bg-teal-500"></div>
+      ) : (
+        ""
+      )}
       {/* outer container */}
-      <div className="flex w-full">
+      <div className="flex py-[12px] w-full">
         <Image
           className="rounded-[50%] p-2 ml-2"
           src={props.image_url}
