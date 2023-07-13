@@ -38,17 +38,19 @@ const JobCard = (props: Props) => {
       return false;
     }
   };
-
-  const keywordElements = props.keywords.map((element) => {
-    return (
-      <div
-        onClick={() => handleClick(props, element)}
-        className="px-2 mx-1 text-sm bg-teal-100  text-teal-600 cursor-pointer hover:bg-teal-600 hover:text-teal-50"
-      >
-        {element}
-      </div>
-    );
-  });
+  let keywordElements;
+  if (props.keywords) {
+    keywordElements = props.keywords.map((element) => {
+      return (
+        <div
+          onClick={() => handleClick(props, element)}
+          className="px-2 mx-1 text-sm bg-teal-100  text-teal-600 cursor-pointer hover:bg-teal-600 hover:text-teal-50"
+        >
+          {element}
+        </div>
+      );
+    });
+  }
   return (
     <div className="flex mx-2 my-4 w-3/4 justify-between bg-gray-50 shadow-md rounded-lg">
       {/* left side highlight for featured */}

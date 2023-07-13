@@ -26,10 +26,10 @@ export default function Home() {
     fetchData()
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((e: Error) => console.log(e));
   }, []);
+
   const filterJobs = data?.filter((elem: any) => {
     if (filters.length == 0) {
       return elem;
