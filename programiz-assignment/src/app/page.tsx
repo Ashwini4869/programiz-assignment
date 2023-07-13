@@ -17,7 +17,9 @@ export default function Home() {
   const [data, setData] = useState<null | [{}]>();
   const [filters, setFilters] = useState<Array<string>>([]);
   const changeFilters = (element: string) => {
-    setFilters([...filters, element]);
+    if (!filters.includes(element)) {
+      setFilters([...filters, element]);
+    }
   };
   useEffect(() => {
     setState("loading");

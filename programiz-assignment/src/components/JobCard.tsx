@@ -33,7 +33,7 @@ const JobCard = (props: Props) => {
     return (
       <div
         onClick={() => handleClick(props, element)}
-        className="px-2 mx-1 text-sm bg-teal-100  text-teal-600 cursor-pointer"
+        className="px-2 mx-1 text-sm bg-teal-100  text-teal-600 cursor-pointer hover:bg-teal-600 hover:text-teal-50"
       >
         {element}
       </div>
