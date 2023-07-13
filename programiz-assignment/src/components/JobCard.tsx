@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
@@ -10,7 +11,14 @@ interface Props {
   posted_on: number;
   timing: string;
   location: string;
+  filters: Array<string>;
+  changeFilters: (arg0: string) => void;
 }
+
+//function to add keyword to filter
+const handleClick: any = (props: Props, element: string) => {
+  props.changeFilters(element);
+};
 
 const JobCard = (props: Props) => {
   //function to convert given timestamp in milliseconds to relative time
@@ -20,9 +28,13 @@ const JobCard = (props: Props) => {
     const time = moment(standardDateFormat).fromNow();
     return time;
   }
+
   const keywordElements = props.keywords.map((element) => {
     return (
-      <div className="px-2 mx-1 text-sm bg-teal-100  text-teal-600">
+      <div
+        onClick={() => handleClick(props, element)}
+        className="px-2 mx-1 text-sm bg-teal-100  text-teal-600 cursor-pointer"
+      >
         {element}
       </div>
     );

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import JobCard from "@/components/JobCard";
 import axios from "axios";
+import Filterbar from "@/components/Filterbar";
 
 const fetchData = async () => {
   const url =
@@ -14,6 +15,10 @@ const fetchData = async () => {
 export default function Home() {
   const [state, setState] = useState<"loading" | "done" | null>(null);
   const [data, setData] = useState<null | [{}]>();
+  const [filters, setFilters] = useState<Array<string>>([]);
+  const changeFilters = (element: string) => {
+    setFilters([...filters, element]);
+  };
   useEffect(() => {
     setState("loading");
     fetchData()
@@ -23,8 +28,10 @@ export default function Home() {
       })
       .catch((e: Error) => console.log(e));
   }, []);
-  const filters = ["CSS"];
   const filterJobs = data?.filter((elem: any) => {
+    if (filters.length == 0) {
+      return elem;
+    }
     return elem.keywords.some((item: string) => filters.includes(item));
   });
   const jobCardElements = filterJobs?.map((elem: any) => {
@@ -37,12 +44,15 @@ export default function Home() {
         position={elem.position}
         timing={elem.timing}
         keywords={elem.keywords}
+        filters={filters}
+        changeFilters={changeFilters}
       />
     );
   });
   return (
     <div className="flex flex-col justify-center">
       <Header />
+      <Filterbar filters={filters} changeFilters={changeFilters} />
       <div className="w-full mt-12 flex flex-col items-center">
         {jobCardElements}
       </div>
