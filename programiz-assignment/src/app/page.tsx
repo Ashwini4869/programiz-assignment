@@ -48,6 +48,7 @@ export default function Home() {
         keywords={elem.keywords}
         filters={filters}
         changeFilters={changeFilters}
+        featured={Math.random() >= 0.5}
       />
     );
   });

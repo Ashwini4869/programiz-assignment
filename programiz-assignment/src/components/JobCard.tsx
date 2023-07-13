@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
-import { split } from "postcss/lib/list";
 
 interface Props {
   image_url: string;
@@ -11,6 +10,7 @@ interface Props {
   posted_on: number;
   timing: string;
   location: string;
+  featured: boolean;
   filters: Array<string>;
   changeFilters: (arg0: string) => void;
 }
@@ -70,6 +70,14 @@ const JobCard = (props: Props) => {
             {displayNew() ? (
               <div className="text-xs bg-teal-600 p-1 px-2 font-semibold text-gray-50 rounded-xl ml-2">
                 NEW!
+              </div>
+            ) : (
+              ""
+            )}
+            {/* featured badge, conditionally render for jobs that are featured (just to demonstrate) randomly assigned through featured prop */}
+            {props.featured ? (
+              <div className="text-xs bg-gray-950 text-gray-100 rounded-xl ml-2 p-1 px-2">
+                FEATURED
               </div>
             ) : (
               ""
